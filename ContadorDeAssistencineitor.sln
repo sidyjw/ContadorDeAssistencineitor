@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContadorDeAssistencineitor.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContadorDeAssistencineitor.Shared", "ContadorDeAssistencineitor\Shared\ContadorDeAssistencineitor.Shared.csproj", "{CC09BC66-D1A6-45DB-8F5C-4ED7DA152CE1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{6F38D85D-82D9-4549-B4EB-DB0617919631}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CC09BC66-D1A6-45DB-8F5C-4ED7DA152CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC09BC66-D1A6-45DB-8F5C-4ED7DA152CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC09BC66-D1A6-45DB-8F5C-4ED7DA152CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
