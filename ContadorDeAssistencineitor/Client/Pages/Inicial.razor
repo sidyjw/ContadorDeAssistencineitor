@@ -1,0 +1,22 @@
+﻿@using ContadorDeAssistencineitor.Client.Models
+@inject NavigationManager NavigationManager
+
+<h1>Inicial</h1>
+<EditForm Model="user" OnValidSubmit="@HandleValideSubmit">
+    <label>
+        Nome:
+        <InputText id="userName" @bind-Value="@user.Name" />
+    </label>
+    <button type="submit">Iniciar</button>
+</EditForm>
+    
+    
+
+@code {
+    UserModel user = new();
+    private void HandleValideSubmit()
+    {
+        Console.WriteLine($"Foiiii {user.Name}");
+        NavigationManager.NavigateTo("/");  
+    }
+}

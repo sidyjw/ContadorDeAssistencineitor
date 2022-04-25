@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime JS
+
+<h3>NewLinkCreated</h3>
+<div class="input-group">
+  <div class="alert alert-success" role="alert">
+    <p>@Link</p>
+  </div>
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-default" @onclick="@HandleCopyToClipboard">
+        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>Copiar
+    </button>
+  </div>
+</div>
+@code {
+    [Parameter]
+    public string? Link { get; set; }
+    private IJSObjectReference? module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/NewLinkCreated.razor.js");
+        }
+    }
+
+    public async void HandleCopyToClipboard()
+    {
+        await CopyToClipboard(Link);
+    }
+
+    public async ValueTask<string?> CopyToClipboard(string? text) =>
+        module is not null && text is not null ? 
+            await module.InvokeAsync<string>("copyToClipboard", text) : null;
+}

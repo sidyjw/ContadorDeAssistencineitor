@@ -1,0 +1,34 @@
+﻿@page "/iniciate"
+@using ContadorDeAssistencineitor.Client.Models
+@using ContadorDeAssistencineitor.Client.Components
+
+<h1>Iniciar nova contagem</h1>
+@if(!newLinkAsCreated)
+{
+   <EditForm Model="@user" OnValidSubmit="@HandleValidInput">
+        <label>
+            Seu nome:
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">&commat;</span>
+            <InputText class="form-control" @bind-Value="user.Name" />
+        </div>
+        </label>
+        <button>Enviar</button>
+   </EditForm> 
+} 
+else 
+{
+    <NewLinkCreated Link="@link" />
+}
+
+
+@code {
+    public UserModel user = new();
+    private bool newLinkAsCreated = false;
+    public string link = "https://localhost.com";
+
+    public void HandleValidInput()
+    {
+        newLinkAsCreated = true;
+    }
+}

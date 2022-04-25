@@ -1,0 +1,21 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Início</PageTitle>
+
+<h1>O que você deseja fazer?</h1>
+
+<button class="btn btn-outline-primary" @onclick="HandleClickIniciate">Iniciar uma contagem</button>
+<button class="btn btn-secondary" @onclick="HandleClickParticipate">Participar de uma contagem</button>
+
+@code {
+    private void HandleClickIniciate()
+    {
+        NavigationManager.NavigateTo("/iniciate");
+    }
+
+    private void HandleClickParticipate()
+    {
+        NavigationManager.NavigateTo("/participate");
+    }
+}
