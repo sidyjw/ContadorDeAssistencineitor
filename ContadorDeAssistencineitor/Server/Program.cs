@@ -1,4 +1,9 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using MediatR;
+using Application.CountGroup;
+using Application.Contracts.Repositories;
+using Infrastructure.Repositories;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<CountGroupContext>(options => options.UseInMemoryDatabase("CountGroup"));
+builder.Services.AddScoped<ICountGroup, CountGroupRepository>();
+builder.Services.AddMediatR(typeof(Create).Assembly);
 
 var app = builder.Build();
 
@@ -28,9 +36,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-
-app.MapRazorPages();
 app.MapControllers();
+app.MapRazorPages();
 app.MapFallbackToFile("index.html");
 
 app.Run();

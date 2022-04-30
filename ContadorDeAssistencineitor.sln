@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContadorDeAssistencineitor.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContadorDeAssistencineitor.Shared", "ContadorDeAssistencineitor\Shared\ContadorDeAssistencineitor.Shared.csproj", "{CC09BC66-D1A6-45DB-8F5C-4ED7DA152CE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{6F38D85D-82D9-4549-B4EB-DB0617919631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{6F38D85D-82D9-4549-B4EB-DB0617919631}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{5CE32892-EDD0-4B20-9ACD-E495C9E4BF40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{F0BB24CE-62EB-47FB-87E8-8C42BC79C2E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F38D85D-82D9-4549-B4EB-DB0617919631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE32892-EDD0-4B20-9ACD-E495C9E4BF40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE32892-EDD0-4B20-9ACD-E495C9E4BF40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE32892-EDD0-4B20-9ACD-E495C9E4BF40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE32892-EDD0-4B20-9ACD-E495C9E4BF40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0BB24CE-62EB-47FB-87E8-8C42BC79C2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0BB24CE-62EB-47FB-87E8-8C42BC79C2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0BB24CE-62EB-47FB-87E8-8C42BC79C2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0BB24CE-62EB-47FB-87E8-8C42BC79C2E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
