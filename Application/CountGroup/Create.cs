@@ -14,7 +14,7 @@ namespace Application.CountGroup
         public class Command : IRequest
         {
             public Guid Guid { get; set; }
-            public string Name { get; set; }
+            public string UserName { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -29,8 +29,8 @@ namespace Application.CountGroup
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                await _countGroup.CreateAsync(request.Guid, request.Name);
-                _logger.LogInformation("Novo grupo criado: [Guid {0}]", request.Guid);
+                await _countGroup.CreateAsync(request.Guid, request.UserName);
+                _logger.LogInformation("[GRUPO CRIADO]: {0} = {0}", nameof(request.Guid), request.Guid);
                 
                 return Unit.Value;
             }

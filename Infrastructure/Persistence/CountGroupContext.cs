@@ -16,6 +16,12 @@ namespace Infrastructure.Persistence
         public CountGroupContext(DbContextOptions<CountGroupContext> options) : base(options)
         { 
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CountGroup>()
+                .HasKey(e => e.Guid);
+        }
     }
 
    
