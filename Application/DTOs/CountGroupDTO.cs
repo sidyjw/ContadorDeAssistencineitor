@@ -13,5 +13,7 @@ namespace ContadorDeAssistencineitor.Application.DTOs
         public record UpdatedGroup(CountGroup countGroup);
 
         public record DeleteGroup(Guid Guid);
+
+        public record NewGroupMember(Guid Guid, string Name);
     }
 }

@@ -63,6 +63,21 @@ namespace ContadorDeAssistencineitor.Server.Controllers
             return Ok();
         }
 
+        [HttpPatch]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("addNewMember")]
+        public async Task<IActionResult> AddNewMember(CountGroupDTO.NewGroupMember newGroupMember)
+        {
+            await _mediator.Send(new AddNewMember.Command
+            {
+                Guid = newGroupMember.Guid,
+                UserName = newGroupMember.Name
+            });
+            return Ok();
+        }
+
         [HttpDelete]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
