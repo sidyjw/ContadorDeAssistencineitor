@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews()
-    .AddNewtonsoftJson(options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
+    .AddNewtonsoftJson(options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });//PODERÁ SER REMOVIDO APÓS ADICIONAR O AUTOMAPPER
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CountGroupContext>(options => options.UseInMemoryDatabase("CountGroup"));
 builder.Services.AddScoped<ICountGroup, CountGroupRepository>();
