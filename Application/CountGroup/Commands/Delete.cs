@@ -1,4 +1,4 @@
-﻿using Application.Contracts.Repositories;
+using Application.Contracts.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,14 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.CountGroup
+namespace Application.CountGroup.Commands
 {
-    public class Create
+    public class Delete
     {
         public class Command : IRequest
         {
             public Guid Guid { get; set; }
-            public string UserName { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -27,11 +26,13 @@ namespace Application.CountGroup
                 _logger = logger;
                 _countGroup = countGroup;
             }
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+
+            public async Task<Unit> Handle(Command command, CancellationToken cancellationToken)
             {
-                await _countGroup.CreateAsync(request.Guid, request.UserName);
-                _logger.LogInformation("[GRUPO CRIADO]: {0} = {0}", nameof(request.Guid), request.Guid);
+                var countGroup = await _countGroup.GetAsync(command.Guid);
                 
+                await _countGroup.DeleteAsync(countGroup);
+
                 return Unit.Value;
             }
         }

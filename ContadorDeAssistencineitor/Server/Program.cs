@@ -1,19 +1,22 @@
 using MediatR;
-using Application.CountGroup;
+using Application.CountGroup.Commands;
 using Application.Contracts.Repositories;
 using Infrastructure.Repositories;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options => { options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore; });
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CountGroupContext>(options => options.UseInMemoryDatabase("CountGroup"));
 builder.Services.AddScoped<ICountGroup, CountGroupRepository>();
 builder.Services.AddMediatR(typeof(Create).Assembly);
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -21,6 +24,8 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
