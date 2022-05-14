@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
         }
 
         public async Task<CountGroup> GetAsync(Guid guid) =>
-            await _context.CountGroups.FirstOrDefaultAsync(group => group.Guid == guid);
+            await _context.CountGroups.Include(x => x.GroupMembers).FirstOrDefaultAsync(group => group.Guid == guid) ?? new CountGroup();
 
         public async Task CreateAsync(Guid guid, string userName)
         {
@@ -41,8 +41,7 @@ namespace Infrastructure.Repositories
 
         public async Task UpdateAsync(CountGroup countGroup)
         {
-            var group = await _context.CountGroups.FirstOrDefaultAsync(x => x.Guid == countGroup.Guid);
-            group.GroupMembers = countGroup.GroupMembers;
+            _context.CountGroups.Update(countGroup);
 
             await _context.SaveChangesAsync();
         }
