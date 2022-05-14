@@ -1,5 +1,3 @@
-using ContadorDeAssistencineitor.Application.DTOs;
-using ContadorDeAssistencineitor.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Application.CountGroup.Commands;
@@ -27,7 +25,7 @@ namespace ContadorDeAssistencineitor.Server.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(CountGroupDTO.CountGroupMembersDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [Route("getCountGroup")]
+        [Route("getCountGroup/{guid:guid}")]
         public async Task<ActionResult<CountGroupDTO.CountGroupMembersDTO>> GetCountGroup(Guid guid)
         {
             var result = await _mediator.Send(new GetCountGroup.Query
@@ -50,7 +48,7 @@ namespace ContadorDeAssistencineitor.Server.Controllers
             return CreatedAtAction(nameof(Create), new CountGroupDTO.NewGroupCreated(Guid: newGroup.Guid));
         }
 
-        [HttpPut]
+        [HttpPatch]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
