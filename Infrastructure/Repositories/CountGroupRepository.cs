@@ -19,8 +19,8 @@ namespace Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<CountGroup> GetAsync(Guid guid) =>
-            await _context.CountGroups.Include(x => x.GroupMembers).FirstOrDefaultAsync(group => group.Guid == guid) ?? new CountGroup();
+        public async Task<CountGroup?> GetAsync(Guid guid) =>
+            await _context.CountGroups.Include(x => x.GroupMembers).FirstOrDefaultAsync(group => group.Guid == guid);
 
         public async Task CreateAsync(Guid guid, string userName)
         {

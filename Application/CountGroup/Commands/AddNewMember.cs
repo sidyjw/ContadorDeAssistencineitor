@@ -1,4 +1,5 @@
-﻿using Application.Contracts.Repositories;
+﻿using Application.Common;
+using Application.Contracts.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,13 +12,13 @@ namespace Application.CountGroup.Commands
 {
     public class AddNewMember
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Guid Guid { get; set; }
             public string UserName { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly ILogger<Command> _logger;
             private readonly ICountGroup _countGroup;
@@ -28,20 +29,20 @@ namespace Application.CountGroup.Commands
                 _countGroup = countGroup;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var countGroup = await _countGroup.GetAsync(request.Guid);
 
                 if(countGroup.GroupMembers.Count == 0)
                 {
-                    return Unit.Value;
+                    return Result<Unit>.Failure("Não é possível adicionar um novo membro pois o grupo não foi encontrado.");
                 }
 
                 countGroup.GroupMembers.Add(new() { Name = request.UserName });
 
                 await _countGroup.UpdateAsync(countGroup);
 
-                return Unit.Value;
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

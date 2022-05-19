@@ -11,7 +11,7 @@ namespace Application.Contracts.Repositories
     {
         Task CreateAsync(Guid guid, string userName);
         Task DeleteAsync(Domain.CountGroup countGroup);
-        Task<Domain.CountGroup> GetAsync(Guid guid);
+        Task<Domain.CountGroup?> GetAsync(Guid guid);
         Task UpdateAsync(Domain.CountGroup countGroup);
     }
 }

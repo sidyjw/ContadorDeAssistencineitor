@@ -32,7 +32,10 @@ namespace ContadorDeAssistencineitor.Server.Controllers
             {
                 Guid = guid,
             });
-            return Ok(result);
+
+            if (!result.IsSuccess) return NotFound(result.Message);
+
+            return Ok(result.Value);
         }
 
         [HttpPost]
@@ -70,11 +73,14 @@ namespace ContadorDeAssistencineitor.Server.Controllers
         [Route("addNewMember")]
         public async Task<IActionResult> AddNewMember(CountGroupDTO.NewGroupMember newGroupMember)
         {
-            await _mediator.Send(new AddNewMember.Command
+            var result = await _mediator.Send(new AddNewMember.Command
             {
                 Guid = newGroupMember.Guid,
                 UserName = newGroupMember.Name
             });
+
+            if (!result.IsSuccess) return NotFound(result.Message);
+
             return Ok();
         }
 
